@@ -9,7 +9,7 @@ contract MerkleAirdrop {
 
     error MerkleAirdrop__InvalidProof();
     error MerkleAirdrop__AlreadyClaimed();
-    
+
     // some list of addresses
     //allow someone in the list to claim ERC20-token
     address[] claimers;
@@ -26,7 +26,7 @@ contract MerkleAirdrop {
     }
 
     function claim(address account, uint256 amount, bytes32[] calldata merkleProof) external {
-        if(s_hasClaimed[account]) {
+        if (s_hasClaimed[account]) {
             revert MerkleAirdrop__AlreadyClaimed();
         }
         // calculate using the account and the amount, the hash -> leaf node
@@ -40,7 +40,6 @@ contract MerkleAirdrop {
         i_airdropToken.safeTransfer(account, amount);
     }
 
-
     function getMarkleRoot() external view returns (bytes32) {
         return i_merkleRoot;
     }
@@ -48,5 +47,4 @@ contract MerkleAirdrop {
     function getAirdropToken() external view returns (IERC20) {
         return i_airdropToken;
     }
-    
 }
