@@ -4,10 +4,12 @@ pragma solidity ^0.8.24;
 import {Test, console} from "forge-std/Test.sol";
 import {MerkleAirdrop} from "src/MerkleAirdrop.sol";
 import {ContractToken} from "src/ContractToken.sol";
+import {DeployMerkleAirdrop} from "script/DeployMerkleAirdrop.s.sol";
 
 contract MerkleAirdropTest is Test {
     MerkleAirdrop public airdrop;
     ContractToken public token;
+    DeployMerkleAirdrop deployer;
 
     bytes32 public ROOT = 0xaa5d581231e596618465a56aa0f5870ba6e20785fe436d5bfb82b08662ccc7c4;
 
@@ -22,10 +24,13 @@ contract MerkleAirdropTest is Test {
     uint256 userPrivateKey;
 
     function setUp() public {
-        token = new ContractToken();
-        airdrop = new MerkleAirdrop(ROOT, token);
-        token.mint(token.owner(), AMOUNT_TO_SENT);
-        token.transfer(address(airdrop), AMOUNT_TO_SENT);
+        deployer = new DeployMerkleAirdrop();
+        (airdrop, token) = deployer.deployMerkleAirdrop();
+
+        // token = new ContractToken();
+        // airdrop = new MerkleAirdrop(ROOT, token);
+        // token.mint(token.owner(), AMOUNT_TO_SENT);
+        // token.transfer(address(airdrop), AMOUNT_TO_SENT);
         (user, userPrivateKey) = makeAddrAndKey("user");
     }
 
