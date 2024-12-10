@@ -1,66 +1,113 @@
-## Foundry
+# Merkle Airdrop
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A professional-grade project leveraging **Foundry** to implement a Merkle Tree-based airdrop system. This contract ensures an efficient and secure distribution of tokens by verifying inclusion proofs using Merkle Trees. The project is deployed on the **Sepolia Testnet**.
 
-Foundry consists of:
+## Features
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- **Efficient Airdrop Distribution**: Uses Merkle Trees to validate recipients with minimal gas costs.
+- **Secure Verification**: Only valid recipients can claim tokens using Merkle proof verification.
+- **Testnet Deployment**: Deployed and operational on the Sepolia Testnet.
 
-## Documentation
+---
 
-https://book.getfoundry.sh/
+## Deployed Contracts on Sepolia Testnet
 
-## Usage
+- **Merkle Airdrop Contract**:  
+  Address: `0x476cA65741002f15E9173C92ec138aE5628e765a`  
+  Transaction Hash: `0xfa2e6fbe3b479166cffe03ca5f1a846a05c1b535564c6abf3b66e174729d1c48`
 
-### Build
+- **Token for Airdrop Contract**:  
+ Address: `0x680D91344c20D4a4e223876b2E87D03450B42eD8`  
+ Transaction Hash: `0xb99348db3b3c5a480b9d58e8fba8a585f8b08709debff65f7bb07aa163c876e7`
 
-```shell
-$ forge build
+---
+
+## Prerequisites
+
+To run this project locally, ensure you have the following:
+
+- **Foundry**: Installed and set up. Follow the [Foundry installation guide](https://book.getfoundry.sh/getting-started/installation.html).
+- **Node.js and npm**: For dependencies related to scripting and interactions.
+- **Sepolia Testnet Access**: RPC URL and a funded wallet for testing.
+
+---
+
+## Installation and Setup
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/AlesxanDer1102/merkle-airdrop.git
+   cd merkle-airdrop
+   ```
+
+2. **Install Dependencies**:
+   Install any necessary dependencies:
+   ```bash
+   forge install
+   ```
+
+3. **Set Environment Variables**:
+   Create a `.env` file and set the following:
+   ```env
+   SEPOLIA_RPC_URL=<your_sepolia_rpc_url>
+   PRIVATE_KEY=<your_wallet_private_key>
+   ETHERSCAN_API_KEY=<your_etherscan_api_key>
+   ```
+   Replace `<your_sepolia_rpc_url>` with your RPC provider URL, `<your_wallet_private_key>` with the private key of your testing wallet and `<your_etherscan_api_key>` with your Etherscan API key.
+
+4. **Compile Contracts**:
+   Compile the contracts using Forge:
+   ```bash
+   forge build
+   ```
+
+5. **Run Tests**:
+   Execute the tests to ensure functionality:
+   ```bash
+   forge test
+   ```
+
+---
+
+## Running the Project Locally
+
+1. **Deploy the Contract Locally**:
+   Deploy to a local testnet using Foundry's `anvil`:
+   ```bash
+   anvil
+   ```
+   In a new terminal, deploy the contract:
+   ```bash
+   forge script script/MerkleAirdrop.s.sol --fork-url http://127.0.0.1:8545 --broadcast
+   ```
+
+2. **Verify Merkle Proofs**:
+   Use scripts to test Merkle proofs and simulate claims:
+   ```bash
+   forge script script/VerifyMerkleProof.s.sol --fork-url http://127.0.0.1:8545
+   ```
+
+---
+## Deploy in Sepolia Testnet
+
+You have to use the makefile to make more easy
+```bash 
+    make deploy ARGS="--network sepolia"
 ```
 
-### Test
+---
 
-```shell
-$ forge test
-```
+## Finding Your Deployed Contracts
 
-### Format
+### **On the Sepolia Testnet**
+- **Contract Address**: `0x476cA65741002f15E9173C92ec138aE5628e765a`
+- **View on Sepolia Explorer**: [Sepolia Etherscan](https://sepolia.etherscan.io/)
 
-```shell
-$ forge fmt
-```
+### **Locally**
+- Deployed addresses are logged in the deployment script or console output.
 
-### Gas Snapshots
+---
 
-```shell
-$ forge snapshot
-```
+## Acknowledgments
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project was built using **Foundry**, inspired by the efficiency and scalability of Merkle Trees for token distribution.
