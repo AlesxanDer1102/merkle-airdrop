@@ -20,6 +20,7 @@ contract MerkleAirdropTest is Test {
     bytes32 public proofTwo = 0xe5ebd1e1b5a5478a944ecab36a9a954ac3b6b8216875f6524caa7a1d87096576;
     bytes32[] public PROOF = [proofOne, proofTwo];
 
+    address public gasPayer;
     address user;
     uint256 userPrivateKey;
 
@@ -32,13 +33,19 @@ contract MerkleAirdropTest is Test {
         // token.mint(token.owner(), AMOUNT_TO_SENT);
         // token.transfer(address(airdrop), AMOUNT_TO_SENT);
         (user, userPrivateKey) = makeAddrAndKey("user");
+        gasPayer = makeAddr("gasPayer");
     }
 
     function testUserCanClaim() public {
         uint256 startingBalance = token.balanceOf(user);
+        bytes32 digest = airdrop.getMessageHash(user, AMOUNT_TO_CLAIM);
 
-        vm.prank(user);
-        airdrop.claim(user, AMOUNT_TO_CLAIM, PROOF);
+        //sing a message
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(userPrivateKey, digest);
+
+        //gasPayer calls claim using the signed message
+        vm.prank(gasPayer);
+        airdrop.claim(user, AMOUNT_TO_CLAIM, PROOF, v, r, s);
 
         uint256 endingBalance = token.balanceOf(user);
         console.log("Ending balance:", endingBalance);
