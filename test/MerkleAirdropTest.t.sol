@@ -11,13 +11,13 @@ contract MerkleAirdropTest is Test {
     ContractToken public token;
     DeployMerkleAirdrop deployer;
 
-    bytes32 public ROOT = 0xaa5d581231e596618465a56aa0f5870ba6e20785fe436d5bfb82b08662ccc7c4;
+    bytes32 public ROOT = 0x8436ddc723b8cce6c11cf330cf90abeab681f3f1a18a90c487f1e51e067c0cff;
 
     uint256 public AMOUNT_TO_CLAIM = 25 * 1e18;
     uint256 public AMOUNT_TO_SENT = AMOUNT_TO_CLAIM * 4;
 
-    bytes32 public proofOne = 0x0fd7c981d39bece61f7499702bf59b3114a90e66b51ba2c53abdf7b62986c00a;
-    bytes32 public proofTwo = 0xe5ebd1e1b5a5478a944ecab36a9a954ac3b6b8216875f6524caa7a1d87096576;
+    bytes32 public proofOne = 0x4f7ed06ac4caf11b858c1e8bbe708161de9798917875f9e55b533b9bfa63aaa6;
+    bytes32 public proofTwo = 0x81f0e530b56872b6fc3e10f8873804230663f8407e21cef901b8aeb06a25e5e2;
     bytes32[] public PROOF = [proofOne, proofTwo];
 
     address public gasPayer;

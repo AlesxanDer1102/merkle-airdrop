@@ -13,12 +13,12 @@ A professional-grade project leveraging **Foundry** to implement a Merkle Tree-b
 ## Deployed Contracts on Sepolia Testnet
 
 - **Merkle Airdrop Contract**:  
-  Address: `0x476cA65741002f15E9173C92ec138aE5628e765a`  
-  Transaction Hash: `0xfa2e6fbe3b479166cffe03ca5f1a846a05c1b535564c6abf3b66e174729d1c48`
+  Address: `0xB7fdb96c347144fc7C2D2f3AC36114Bc84E7FEc7`  
+  Transaction Hash: `0xa503a65205950cfaecc23bdc18d0160d31592ce70dd831d5200800ed9ce43a82`
 
 - **Token for Airdrop Contract**:  
- Address: `0x680D91344c20D4a4e223876b2E87D03450B42eD8`  
- Transaction Hash: `0xb99348db3b3c5a480b9d58e8fba8a585f8b08709debff65f7bb07aa163c876e7`
+ Address: `0xe27Bf400d4298021C97a5DB5f27B7659aE269bEF`  
+ Transaction Hash: `0x294d4d4d787a0b2d828a479392a2dc1ba27b25b5831066b9a505d7cccfcf85c7`
 
 ---
 
@@ -100,7 +100,7 @@ You have to use the makefile to make more easy
 ## Finding Your Deployed Contracts
 
 ### **On the Sepolia Testnet**
-- **Contract Address**: `0x476cA65741002f15E9173C92ec138aE5628e765a`
+- **Contract Address**: `0xB7fdb96c347144fc7C2D2f3AC36114Bc84E7FEc7`
 - **View on Sepolia Explorer**: [Sepolia Etherscan](https://sepolia.etherscan.io/)
 
 ### **Locally**
